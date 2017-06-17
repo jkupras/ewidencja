@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @ewidencja.data %>
+</p>
+
+<p>
+  <strong>Nr:</strong>
+  <%= @ewidencja.nr %>
+</p>
+
+<p>
+  <strong>Przychod:</strong>
+  <%= @ewidencja.przychod %>
+</p>
+
+<p>
+  <strong>Wydatki:</strong>
+  <%= @ewidencja.wydatki %>
+</p>
+
+<p>
+  <strong>Uwagi:</strong>
+  <%= @ewidencja.uwagi %>
+</p>
+
+<%= link_to 'Edit', edit_ewidencja_path(@ewidencja) %> |
+<%= link_to 'Back', ewidencjas_path %>

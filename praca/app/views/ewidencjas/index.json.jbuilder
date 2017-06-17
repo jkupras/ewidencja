@@ -1,0 +1,1 @@
+json.array! @ewidencjas, partial: 'ewidencjas/ewidencja', as: :ewidencja

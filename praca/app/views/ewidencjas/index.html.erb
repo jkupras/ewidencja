@@ -1,0 +1,137 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ewidencja</h1>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+
+
+
+
+
+ <%@lata.uniq.sort.each do |y| %>
+<%@nr=1%>
+ <% @przychody=0.00 %>
+<%@rozchody=0.00%>
+<%@styczen=0.00%>
+<%@luty=0.00%>
+<%@marzec=0.00%>
+<%@kwiecien=0.00%>
+<%@maj=0.00%>
+<%@czerwiec=0.00%>
+<%@lipiec=0.00%>
+<%@sierpien=0.00%>
+<%@wrzesien=0.00%>
+<%@pazdziernik=0.00%>
+<%@listopad=0.00%>
+<%@grudzien=0.00%>
+
+<div class="table-responsive">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>numer</th>
+      <th>Data</th>
+      <th>Nr dowodu</th>
+      <th>Przychod</th>
+      <th>Wydatki</th>
+      <th>Uwagi</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+    <% @ewidencjas.each do |ewidencja| %>
+    <% if y==ewidencja.data.year%>
+
+<tbody>
+      <tr>
+      <td><%=@nr%></td>
+        <td><%= ewidencja.data %></td>
+        <td><%= ewidencja.nr %></td>
+        <td><%= ewidencja.przychod %></td>
+        <td><%= ewidencja.wydatki %></td>
+        <td><%= ewidencja.uwagi %></td>
+        <td><%= link_to 'Show', ewidencja %></td>
+        <td><%= link_to 'Edit', edit_ewidencja_path(ewidencja) %></td>
+        <td><%= link_to 'Destroy', ewidencja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%@nr=@nr+1%>
+     <%@przychody=@przychody+ewidencja.przychod%>
+     <%@rozchody=@rozchody+ewidencja.wydatki%>
+
+     <%case ewidencja.data.mon%>
+     <%when 1%>
+     <%@styczen= @styczen+ewidencja.przychod-ewidencja.wydatki%>
+     <%when 2%>
+     <%@luty+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 3%>
+     <%@marzec+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 4%>
+     <%@kwiecien+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 5%>
+     <%@maj+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 6%>
+     <%@czerwiec+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 7%>
+     <%@lipiec+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 8%>
+     <%@sierpien+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 9%>
+     <%@wrzesien+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 10%>
+     <%@pazdziernik+=ewidencja.przychod-ewidencja.wydatki%>
+     <%when 11%>
+     <%@listopad+=ewidencja.przychod-ewidencja.wydatki%>
+      <%when 12%>
+     <%@grudzien+=ewidencja.przychod-ewidencja.wydatki%>
+
+
+<%end%>
+      </tr>
+
+<% end %>
+
+
+    <%end%>
+
+<tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>SUMA: <strong><%=@przychody%></strong></td>
+        <td>SUMA: <strong><%=@rozchody%></strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+<%=y%>
+<p><strong>BILANS ROCZNY: <%=@przychody-@rozchody%></strong></p>
+<p>bilans miesieczny</p>
+<ul>
+<li>Styczeń: <%=@styczen%></li>
+<li>Luty: <%=@luty%></li>
+<li>Marzec: <%=@marzec%></li>
+<li>Kwiecień: <%=@kwiecien%></li>
+<li>Maj: <%=@maj%></li>
+<li>Czerwiec: <%=@czerwiec%></li>
+<li>Lipiec: <%=@lipiec%></li>
+<li>Sierpień: <%=@sierpien%></li>
+<li>Wrzesień: <%=@wrzesien%></li>
+<li>Październik: <%=@pazdziernik%></li>
+<li>Listopad: <%=@listopad%></li>
+<li>Grudzień: <%=@grudzien%></li>
+</ul>
+    <%end%>
+
+
+      </tr>
+  </tbody>
+</table>
+
+</div>
+
+<br>
+
+<%= link_to 'Dodaj wpis do ewidencji', new_ewidencja_path %>
